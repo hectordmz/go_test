@@ -41,7 +41,6 @@ func NumBase(aNumeros NumerosBase) {
 
 func convertToDecimal(num string, base int) int {
 	var decimal int
-
 	for i := len(num) - 1; i >= 0; i-- {
 		digit := num[i]
 		var value int
@@ -52,26 +51,21 @@ func convertToDecimal(num string, base int) int {
 		}
 		decimal += value * int(math.Pow(float64(base), float64(len(num)-i-1)))
 	}
-
 	return decimal
 }
 
 func convertFromDecimal(decimal, base int) string {
 	var result string
-
 	for decimal > 0 {
 		remainder := decimal % base
-
 		var digit string
 		if remainder < 10 {
 			digit = strconv.Itoa(remainder)
 		} else {
 			digit = string('A' + (remainder - 10))
 		}
-
 		result = digit + result
 		decimal /= base
 	}
-
 	return result
 }
